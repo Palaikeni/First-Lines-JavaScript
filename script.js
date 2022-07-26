@@ -1,122 +1,118 @@
-let celcius = 10;
-let fahrenheit = celcius * 1.8 + 32;
-console.log(fahrenheit);
-
-let cash = 50;
-let price = 40;
-let difference = cash - price;
-let isStoreOpen = true;
-
-if (difference > 0) {
-    console.log("you paid extra, here's " + difference + " dollars change");
-}
-else if (difference === 0) {
-    console.log("you paid the exact amount, have a nice day");
-}
-else {
-    console.log("not enough money, you still owe " + -difference + " dollars");
+function isLoggedAndSubbed(log, sub) {
+    return log === "Logged_In" && sub === "Subscribed" ? true : false;
 }
 
-difference >= 0 && isStoreOpen ? console.log("give receipt") : console.log("do not give receipt");
+console.log(isLoggedAndSubbed("Logged_In", "Subscribed"));
 
-for (i = 1; i <= 20; i++) {
-    if (i % 3 === 0 && i % 5 === 0) {
-        console.log("Frontend Simplified");
-    } else if (i % 3 === 0) {
-        console.log("Frontend");
-    } else if (i % 5 === 0) {
-        console.log("Simplified");
-    } else {
-        console.log(i);
+function filterOut(num1, num2) {
+    return !!num1 == false ? num1 : num2;
+}
+
+console.log (filterOut("", 200));
+
+let arr = [1, 2, 3, 4, 5, 6, 7];
+
+console.log(arr.length);
+
+function sumOfArray(array) {
+    let sum = null;
+    for (i = 0; i < array.length; i++) {
+        sum += array[i];
     }
+    console.log(sum);
 }
 
-let string = "Frontend Simplified"
+sumOfArray(arr);
 
-for (i = 0; i < string.length; i++) {
-    console.log(string[i]);
-}
-
-function convertCToF(cNum) {
-    return cNum * 1.8 + 32;
-}
-
-console.log(convertCToF(30));
-
-const convertFToC = (fNum) => {
-    return (fNum - 32) / 1.8;
-}
-
-console.log(convertFToC(86));
-
-let arr = [10, 20, 30, 40, 50];
-
-console.log(arr[arr.length - 1]);
-
-arr.push(60);
-
-console.log(arr[arr.length - 1]);
-
-let newArr = arr.filter((element) => {
-    return element % 3 === 0;
-})
-
-console.log(newArr);
-
-let grades = ["A+", "A", "Fail"];
-
-let goodGrades = grades.filter(element1 => element1 !== "Fail");
-
-console.log(goodGrades);
-
-let greatGrades = [];
-
-for (i = 0; i < grades.length; i++) {
-    if (grades[i] !== "Fail") {
-        greatGrades.push(grades[i]);
+function progressiveSum(num) {
+    let sum1 = null;
+    for (i = 1; i <= num; i++) {
+        sum1 += i;
     }
+    return sum1;
 }
 
-console.log(greatGrades);
+console.log(progressiveSum(600));
 
-let dollars = [1, 5, 10, 3];
-
-let cents = dollars.map(element => element * 100);
-
-console.log(cents);
-
-cents = [];
-
-for (i = 0; i < dollars.length; i++) {
-    cents.push(dollars[i] * 100);
-}
-
-console.log(cents);
-
-let users = [
-    {
-        username: "BWhit01",
-        password: "mypassword",
-        email: "bmwhitaker01@gmail.com",
-        subscriptionStatus: "Pro",
-        discordId: "BWhit_01",
-        lessonsCompleted: [1, 2, 3]
+function getMax(array) {
+    let max = array[0];
+    for (i = 0; i < array.length; i++) {
+        if (array[i] > max) {
+            max = arr[i];
+        }
     }
-]
-
-function register(username, password, email, subscriptionStatus, discordId, lessonsCompleted) {
-    let newUser = { username: username, password: password, email: email, subscriptionStatus: subscriptionStatus, discordId: discordId, lessonsCompleted: lessonsCompleted }
-    users.push(newUser)
+    return max;
 }
 
-register("myusername", "mypassword", "myemail", "VIP", "mydiscord", [1, 2, 3, 4]);
+console.log(getMax(arr));
 
-console.log(users);
-
-// document.querySelector("#title").innerHTML = "New Name";
-
-// console.log(document.getElementById("title"));
-
-function changeTitleToPurple() {
-    document.querySelector("#title").style.color = "purple"
+function reverseString(str) {
+    let length = str.length;
+    let newStr = "";
+    for (i = 0; i < length; i++) {
+        newStr += str[(length - 1) - i];
+    }
+    return newStr;
 }
+
+console.log(reverseString("Brayden"))
+console.log("Brayden".split("").reverse().join(""));
+
+function convertToZeros(array) {
+    let newArr = [];
+    for (i = 0; i < array.length; i++) {
+        newArr.push(0);
+    }
+    return newArr;
+}
+
+console.log(convertToZeros(arr));
+console.log(arr.map(elem => 0));
+
+let arr1 = ["Apple", "Banana", "Apple", "Orange"];
+
+function removeApples(array) {
+    let newArr = array.filter(elem => elem !== "Apple");
+    return newArr;
+}
+
+console.log(removeApples(arr1));
+
+let arr2 = [500, 0, "Brayden", "", []];
+
+function convertToBoolean(array) {
+    let newArr = [];
+    for (i = 0; i < array.length; i++) {
+        newArr.push(!!array[i]);
+    }
+    return newArr;
+}
+
+console.log(convertToBoolean(arr2));
+console.log(arr2.map(elem => !!elem));
+
+let arr3 = [40, 20, -90, -50, 0, 100];
+
+function sortLowToHigh(arr) {
+    return arr.sort((a,b) => (a-b))
+}
+    
+console.log(sortLowToHigh(arr3));
+
+async function postsbyUser(userId) {
+    const promise = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const result = await promise.json();
+    const posts = result.filter(elem => elem.userId === userId);
+    console.log(posts);
+}
+
+postsbyUser(5);
+
+async function firstSix() {
+    const promise = await fetch("https://jsonplaceholder.typicode.com/todos");
+    const result = await promise.json();
+    const posts = result.filter(elem => !elem.completed).slice(0, 6);
+    console.log(posts);
+}
+
+firstSix();
